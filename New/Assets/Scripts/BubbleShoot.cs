@@ -25,6 +25,11 @@ public class BubbleShoot : MonoBehaviour {
 
     void Shoot()
     {
+        if(enabled==false)
+        {
+            return;
+        }
+
         Vector2 instantiateVector;
 
         if (facing == FacingDirections.Right)

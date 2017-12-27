@@ -5,8 +5,10 @@ using UnityEngine;
 public class StopTime : MonoBehaviour {
     public bool b = false;
 
-	void Start ()
+    public Game1ScriptList game1Scriptlist;
+
+    public void EnableAllScripts()
     {
-        Time.timeScale = 0f;
-	}
+        game1Scriptlist.ScriptControl(true);
+    }
 }
