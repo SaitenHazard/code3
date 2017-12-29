@@ -7,22 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class ButtonReady : EventTrigger
 {
-    private StopTime script;
-
-    void Awake()
-    {
-        script = GetComponentInParent<StopTime>();
-    }
+    public GameManagerBase gameManagerBase;
 
     public override void OnPointerDown(PointerEventData data)
     {
-        if (script.b == false)
+        if(gameManagerBase.start == false)
         {
-            script.b = true;
+            gameManagerBase.start = true;
         }
         else
         {
-            script.EnableAllScripts();
+            gameManagerBase.ActivateScripts(true);
         }
 
         Destroy(gameObject);
