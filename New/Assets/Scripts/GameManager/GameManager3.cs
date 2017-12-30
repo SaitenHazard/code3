@@ -4,33 +4,18 @@ using UnityEngine;
 
 public class GameManager3 : GameManagerBase
 {
-    private DragControls dragLeftScript;
-    private DragControls dragRightScript;
-    public InitiateDXBall dxBallScript;
+    public GenerateBubbles generateBubbles;
 
     private FacingDirections localFacing;
 
     public override void Awake()
     {
-        dragLeftScript = characterLeft.GetComponent<DragControls>();
-        dragRightScript = characterRight.GetComponent<DragControls>();
-
         base.Awake();
     }
 
     public override void ActivateScripts(bool activate)
     {
-        dxBallScript.enabled = activate;
-
-        if (characterLeft != null && characterLeft.activeInHierarchy)
-        {
-            dragLeftScript.enabled = activate;
-        }
-
-        if (characterRight != null && characterRight.activeInHierarchy)
-        {
-            dragRightScript.enabled = activate;
-        }
+        generateBubbles.enabled = activate;
     }
 
     public override void UniqueGameOverHander(FacingDirections facing)
@@ -38,6 +23,11 @@ public class GameManager3 : GameManagerBase
         localFacing = facing;
         ActivateScripts(false);
 
+        Invoke("InvokeGameOver", 1f);
+    }
+
+    void InvokeGameOver()
+    {
         GameObject[] bubbles;
 
         bubbles = GameObject.FindGameObjectsWithTag("Bubble");
@@ -47,11 +37,6 @@ public class GameManager3 : GameManagerBase
             Destroy(food);
         }
 
-        Invoke("InvokeGameOver", 1f);
-    }
-
-    void InvokeGameOver()
-    {
         if (localFacing == FacingDirections.Left)
         {
             GameOver(false);

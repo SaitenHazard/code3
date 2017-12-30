@@ -10,96 +10,29 @@ public class DestroyOnTap : MonoBehaviour
 
 	void Update ()
     {
-        localTouchCount = Input.touchCount;
-
-        handleTouch();
-    }
-
-    void handleTouch()
-    {
-        Vector2[] touchPositions = getTouchPosition();
-
-        if(touchPositions==null)
+        int i = 0;
+        while (i < Input.touchCount)
         {
-            return;
-        }
 
-        RaycastHit2D[] hits = getHits(touchPositions);
-
-        if (hits==null)
-        {
-            return;
-        }
-
-        GameObject[] objects = getObjects(hits);
-
-
-        bubbleDestroyer(objects);
-
-    }
-
-    void bubbleDestroyer(GameObject[] objects)
-    {
-        for ( int i = 0; i<localTouchCount; i++)
-        {
-            if (objects[i] != null) Destroy(objects[i]);
-        }
-    }
-
-
-    GameObject[] getObjects(RaycastHit2D[] hits)
-    {
-        GameObject[] objects = null;
-
-        GameObject singleObject;
-
-        for(int i = 0; i < localTouchCount; i++)
-        {
-            singleObject = hits[i].collider.gameObject;
-
-            if (hits[i].collider.gameObject.tag=="Bubble")
+            if (Input.GetTouch(i).phase == TouchPhase.Began)
             {
-                objects[i] = singleObject;
-            }
-            else
-            {
-                objects[i] = null;
-            }
-        }
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), -Vector2.up);
 
-        return objects;
-    }
+                Debug.Log("TAP !");
 
-    RaycastHit2D[] getHits(Vector2[] positionList)
-    {
-        RaycastHit2D [] hits = null;
+                if (hit.collider != null)
+                {
 
-        for(int i = 0; i < localTouchCount; i++)
-        {
-            hits[i] = Physics2D.Raycast(positionList[i], Vector2.zero);
-        }
+                    if (hit.collider.tag == "BubblePink" || hit.collider.tag == "BubbleBlue")
+                    {
+                        Destroy(hit.collider.gameObject);
+                    }
 
-        return hits;
-    }
-
-    Vector2[] getTouchPosition()
-    {
-        Vector2[] positionList = null;
-
-        if (localTouchCount>0)
-        {
-            positionList = new Vector2[localTouchCount];
-
-            for (int i = 0; i < localTouchCount; i++)
-            {
-                Touch touchInput = Input.GetTouch(i);
-                Vector2 touchPositionScreen = touchInput.position;
-                Vector2 touchPositionWorld = Camera.main.ScreenToWorldPoint(touchPositionScreen);
-                positionList[i] = touchPositionWorld;
+                }
             }
 
+            ++i;
         }
 
-        return positionList;
     }
 }

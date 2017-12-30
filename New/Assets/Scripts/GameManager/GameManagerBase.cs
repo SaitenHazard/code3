@@ -47,8 +47,12 @@ public class GameManagerBase : MonoBehaviour {
 
     virtual public void GameOver(bool leftWins)
     {
-        Destroy(characterLeft);
-        Destroy(characterRight);
+        if(characterLeft!=null)
+            Destroy(characterLeft);
+
+        if(characterRight!=null)
+            Destroy(characterRight);
+
         buttonHome.SetActive(true);
 
         if(gameOver == false)
