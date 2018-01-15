@@ -9,8 +9,9 @@ public class GenerateBubbles : MonoBehaviour {
     public GameObject bubblePink;
     public GameObject bubbleBlue;
 
-    private int countBlue;
-    private int countPink;
+    public int countBlue;
+    public int countPink;
+
     private GameObject gObject;
     private Vector2 spawnPosition;
     private BubbleBubbleCollision bubbleBubbleCollision;
@@ -27,45 +28,44 @@ public class GenerateBubbles : MonoBehaviour {
     void Update()
     {
         if(count==0) StateWinner();
-        tapHandler();
     }
 
-    void tapHandler()
-    {
-        int i = 0;
+    //void tapHandler()
+    //{
+    //    int i = 0;
 
-        while (i < Input.touchCount)
-        {
-            if (Input.GetTouch(i).phase == TouchPhase.Began)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), -Vector2.up);
+    //    while (i < Input.touchCount)
+    //    {
+    //        if (Input.GetTouch(i).phase == TouchPhase.Began)
+    //        {
+    //            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), -Vector2.up);
 
-                if (hit.collider != null)
-                {
-                    GameObject gameObject = hit.collider.gameObject;
+    //            if (hit.collider != null)
+    //            {
+    //                GameObject gameObject = hit.collider.gameObject;
 
-                    if (gameObject.tag == "Bubble")
-                    {
-                        if (gameObject.transform.position.x < 0)
-                        {
-                            countBlue--;
-                        }
-                        else
-                        {
-                            countPink--;
-                        }
+    //                if (gameObject.tag == "Bubble")
+    //                {
+    //                    if (gameObject.transform.position.x < 0)
+    //                    {
+    //                        countBlue--;
+    //                    }
+    //                    else
+    //                    {
+    //                        countPink--;
+    //                    }
 
-                        Destroy(gameObject);
-                    }
-                }
-            }
+    //                    Destroy(gameObject);
+    //                }
+    //            }
+    //        }
 
-            ++i;
-        }
+    //        ++i;
+    //    }
 
-        //OnMouseDestroy();
-    }
-
+    //    //OnMouseDestroy();
+    //}
+    
     //void OnMouseDestroy()
     //{
     //    if (Input.GetMouseButtonDown(0))

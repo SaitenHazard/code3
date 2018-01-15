@@ -8,6 +8,8 @@ public class GameManager1 : GameManagerBase
     private DragControls dragRightScript;
     private BubbleShoot bubbleShootLeft;
     private BubbleShoot bubbleShootRight;
+    private Animator characterLeftAnim;
+    private Animator characterRightAnim;
 
     private FacingDirections localFacing;
 
@@ -17,6 +19,8 @@ public class GameManager1 : GameManagerBase
         bubbleShootLeft = characterLeft.GetComponent<BubbleShoot>();
         dragRightScript = characterRight.GetComponent<DragControls>();
         bubbleShootRight = characterRight.GetComponent<BubbleShoot>();
+        characterLeftAnim = characterLeft.GetComponentInChildren<Animator>();
+        characterRightAnim = characterRight.GetComponentInChildren<Animator>();
 
         base.Awake();
     }
@@ -27,12 +31,15 @@ public class GameManager1 : GameManagerBase
         {
             dragLeftScript.enabled = activate;
             bubbleShootLeft.enabled = activate;
+            characterRightAnim.SetBool("Walk", activate);
+
         }
 
         if (characterRight != null && characterRight.activeInHierarchy)
         {
             dragRightScript.enabled = activate;
             bubbleShootRight.enabled = activate;
+            characterLeftAnim.SetBool("Walk", activate);
         }
 
         base.DestroyTutorial();
@@ -47,9 +54,9 @@ public class GameManager1 : GameManagerBase
 
         bubbles = GameObject.FindGameObjectsWithTag("Bubble");
 
-        foreach (GameObject food in bubbles)
+        foreach (GameObject bubble in bubbles)
         {
-            Destroy(food);
+            Destroy(bubble);
         }
 
         Invoke("InvokeGameOver", 1f);
