@@ -16,6 +16,7 @@ public class GameManager3 : GameManagerBase
     public override void ActivateScripts(bool activate)
     {
         generateBubbles.enabled = activate;
+        base.DestroyTutorial();
     }
 
     public override void UniqueGameOverHander(FacingDirections facing)

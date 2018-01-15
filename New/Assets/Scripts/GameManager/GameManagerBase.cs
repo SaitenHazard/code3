@@ -9,6 +9,7 @@ public class GameManagerBase : MonoBehaviour {
 
     public GameObject characterLeft;
     public GameObject characterRight;
+    public GameObject tutorialHolder;
 
     public GameObject gameOverState;
     private GameObject buttonHome;
@@ -35,6 +36,15 @@ public class GameManagerBase : MonoBehaviour {
 
     }
 
+    virtual public void DestroyTutorial()
+    {
+        if (tutorialHolder != null && tutorialHolder.activeInHierarchy)
+        {
+            Destroy(tutorialHolder);
+        }
+
+    }
+
     virtual public void UniqueGameOverHander()
     {
 
@@ -42,7 +52,6 @@ public class GameManagerBase : MonoBehaviour {
 
     virtual public void ActivateScripts(bool activate)
     {
-
     }
 
     virtual public void GameOver(bool leftWins)

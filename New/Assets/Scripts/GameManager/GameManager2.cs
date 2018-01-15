@@ -31,6 +31,8 @@ public class GameManager2 : GameManagerBase
         {
             dragRightScript.enabled = activate;
         }
+
+        base.DestroyTutorial();
     }
 
     public override void UniqueGameOverHander(FacingDirections facing)

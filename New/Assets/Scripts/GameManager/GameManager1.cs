@@ -34,6 +34,8 @@ public class GameManager1 : GameManagerBase
             dragRightScript.enabled = activate;
             bubbleShootRight.enabled = activate;
         }
+
+        base.DestroyTutorial();
     }
 
     public override void UniqueGameOverHander(FacingDirections facing)
