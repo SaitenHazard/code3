@@ -5,11 +5,23 @@ using UnityEngine;
 public class BubbleBubbleCollision : MonoBehaviour {
 
     public GameObject bubblePop;
+    private BubblePlayerCollision bubblePlayerCollision;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         InstantiatePop();
-        Destroy(collision.gameObject);
+
+        if (collision.gameObject.tag == "Player")
+            OnCollisionWithPlayer(collision.gameObject);
+
+        Destroy(gameObject);
+    }
+
+    void OnCollisionWithPlayer(GameObject Object)
+    {
+        bubblePlayerCollision = Object.GetComponent<BubblePlayerCollision>();
+        bubblePlayerCollision.onLoose();
+
     }
 
     void InstantiatePop()

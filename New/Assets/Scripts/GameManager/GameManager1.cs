@@ -19,8 +19,11 @@ public class GameManager1 : GameManagerBase
         bubbleShootLeft = characterLeft.GetComponent<BubbleShoot>();
         dragRightScript = characterRight.GetComponent<DragControls>();
         bubbleShootRight = characterRight.GetComponent<BubbleShoot>();
+
         characterLeftAnim = characterLeft.GetComponentInChildren<Animator>();
         characterRightAnim = characterRight.GetComponentInChildren<Animator>();
+
+        Debug.Log(characterRightAnim);
 
         base.Awake();
     }
@@ -30,9 +33,8 @@ public class GameManager1 : GameManagerBase
         if (characterLeft != null && characterLeft.activeInHierarchy)
         {
             dragLeftScript.enabled = activate;
-            bubbleShootLeft.enabled = activate;
+            //bubbleShootLeft.enabled = activate;
             characterRightAnim.SetBool("Walk", activate);
-
         }
 
         if (characterRight != null && characterRight.activeInHierarchy)

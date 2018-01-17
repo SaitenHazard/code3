@@ -18,6 +18,11 @@ public class DragControls : MonoBehaviour
         UpdatePosition();
     }
 
+    public FacingDirections getFacing()
+    {
+        return facing;
+    }
+
     void UpdatePosition()
     {
         Vector2 touchPosition = getTouchPosition();

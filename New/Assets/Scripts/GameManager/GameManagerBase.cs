@@ -11,20 +11,22 @@ public class GameManagerBase : MonoBehaviour {
     public GameObject characterRight;
     public GameObject tutorialHolder;
 
-    public GameObject gameOverState;
     private GameObject buttonHome;
-    private GameObject spriteLeftWin;
-    private GameObject spriteRightWin;
-    private GameObject spriteLeftLoose;
-    private GameObject spriteRightLoose;
+
+    private Animator leftAnimation;
+    private Animator rightAnimation;
 
     virtual public void Awake()
     {
         buttonHome = gameObject.transform.Find("ButtonHome").gameObject;
-        spriteLeftWin = gameOverState.transform.Find("LeftWin").gameObject;
-        spriteRightWin = gameOverState.transform.Find("RightWin").gameObject;
-        spriteLeftLoose = gameOverState.transform.Find("LeftLoose").gameObject;
-        spriteRightLoose = gameOverState.transform.Find("RightLoose").gameObject;
+        leftAnimation = characterLeft.GetComponentInChildren<Animator>();
+        rightAnimation = characterRight.GetComponentInChildren<Animator>();
+
+    }
+
+    virtual public void setAnimationSet()
+    {
+
     }
 
     virtual public void Start()
@@ -56,25 +58,19 @@ public class GameManagerBase : MonoBehaviour {
 
     virtual public void GameOver(bool leftWins)
     {
-        if(characterLeft!=null)
-            Destroy(characterLeft);
-
-        if(characterRight!=null)
-            Destroy(characterRight);
-
         buttonHome.SetActive(true);
 
         if(gameOver == false)
         {
             if (leftWins == true)
             {
-                spriteLeftWin.SetActive(true);
-                spriteRightLoose.SetActive(true);
+                leftAnimation.SetBool("Win", true);
+                rightAnimation.SetBool("Loose", true);
             }
             else
             {
-                spriteLeftLoose.SetActive(true);
-                spriteRightWin.SetActive(true);
+                leftAnimation.SetBool("Loose", true);
+                rightAnimation.SetBool("Win", true);
             }
 
             gameOver = true;

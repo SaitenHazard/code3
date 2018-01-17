@@ -7,7 +7,7 @@ public class BubblePlayerCollision : MonoBehaviour
     public GameManagerBase gameManagerBase;
     public FacingDirections facing;
 
-    public void OnDestroy()
+    public void onLoose()
     {
         gameManagerBase.UniqueGameOverHander(facing);
     }
