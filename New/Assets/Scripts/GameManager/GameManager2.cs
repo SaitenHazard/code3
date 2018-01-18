@@ -7,6 +7,7 @@ public class GameManager2 : GameManagerBase
     private DragControls dragLeftScript;
     private DragControls dragRightScript;
     public InitiateDXBall dxBallScript;
+    public GameObject boardLeft, boardRight;
 
     private FacingDirections localFacing;
 
@@ -14,7 +15,7 @@ public class GameManager2 : GameManagerBase
     {
         dragLeftScript = characterLeft.GetComponent<DragControls>();
         dragRightScript = characterRight.GetComponent<DragControls>();
-
+        setAnimationSet();
         base.Awake();
     }
 
@@ -39,6 +40,7 @@ public class GameManager2 : GameManagerBase
     {
         localFacing = facing;
         ActivateScripts(false);
+        
 
         GameObject[] bubbles;
 
@@ -54,6 +56,9 @@ public class GameManager2 : GameManagerBase
 
     void InvokeGameOver()
     {
+        Destroy(boardLeft);
+        Destroy(boardRight);
+
         if (localFacing == FacingDirections.Left)
         {
             GameOver(false);
