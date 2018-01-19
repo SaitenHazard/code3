@@ -33,7 +33,7 @@ public class GameManager1 : GameManagerBase
         if (characterLeft != null && characterLeft.activeInHierarchy)
         {
             dragLeftScript.enabled = activate;
-            //bubbleShootLeft.enabled = activate;
+            bubbleShootLeft.enabled = activate;
             characterRightAnim.SetBool("Walk", activate);
         }
 

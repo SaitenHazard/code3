@@ -24,11 +24,6 @@ public class GameManager3 : GameManagerBase
         localFacing = facing;
         ActivateScripts(false);
 
-        Invoke("InvokeGameOver", 1f);
-    }
-
-    void InvokeGameOver()
-    {
         GameObject[] bubbles;
 
         bubbles = GameObject.FindGameObjectsWithTag("Bubble");
@@ -38,13 +33,18 @@ public class GameManager3 : GameManagerBase
             Destroy(food);
         }
 
+        Invoke("InvokeGameOver", 1f);
+    }
+
+    void InvokeGameOver()
+    {
         if (localFacing == FacingDirections.Left)
         {
-            GameOver(false);
+            GameOver(true);
         }
         else
         {
-            GameOver(true);
+            GameOver(false);
         }
     }
 }

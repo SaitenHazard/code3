@@ -8,6 +8,7 @@ public class DragControls : MonoBehaviour
 
     private Rigidbody2D rBody;
     private Vector2 touchPosition;
+    private Vector2 touchPositionWorld;
 
     void Awake()
     {
@@ -33,7 +34,7 @@ public class DragControls : MonoBehaviour
     {
         touchPosition = getTouchPosition();
 
-        if(touchPosition == null)
+        if(touchPosition == Vector2.zero)
         {
             return;
         }
@@ -45,18 +46,18 @@ public class DragControls : MonoBehaviour
 
     public int getTouchDifference()
     {
-        if (touchPosition.y - rBody.transform.position.y > 0)
+        if (touchPosition == Vector2.zero || touchPositionWorld.y - rBody.transform.position.y == 0 || enabled == false)
         {
-            return 1;
+            return 0;
         }
-        else if (touchPosition.y - rBody.transform.position.y < 0)
+        else if (touchPositionWorld.y - rBody.transform.position.y < 0)
         {
             return -1;
 
         }
         else
         {
-            return 0;
+            return 1;
         }
     }
 
@@ -68,7 +69,7 @@ public class DragControls : MonoBehaviour
             {
                 Touch touchInput = Input.GetTouch(i);
                 Vector2 touchPositionScreen = touchInput.position;
-                Vector2 touchPositionWorld = Camera.main.ScreenToWorldPoint(touchPositionScreen);
+                touchPositionWorld = Camera.main.ScreenToWorldPoint(touchPositionScreen);
 
                 if(touchPositionWorld.x < 0 && facing==FacingDirections.Right)
                 {

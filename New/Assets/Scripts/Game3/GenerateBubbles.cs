@@ -16,7 +16,7 @@ public class GenerateBubbles : MonoBehaviour {
     private Vector2 spawnPosition;
     private BubbleBubbleCollision bubbleBubbleCollision;
 
-    private int count = 20;
+    private int count = 10;
 
 	void Start ()
     {

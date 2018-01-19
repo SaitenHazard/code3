@@ -29,6 +29,5 @@ public class BubbleBubbleCollision : MonoBehaviour {
         Vector2 instantiateVector = new Vector2(transform.position.x, transform.position.x);
 
         Instantiate(bubblePop, instantiateVector, Quaternion.identity);
-
     }
 }
