@@ -8,11 +8,23 @@ public class destroyOnTap1 : MonoBehaviour {
     public GameObject pinkPop;
     public GameObject bluePop;
 
+    public GameObject playerLeft;
+    public GameObject playerRight;
+
     private GameObject gameObject_m;
+    private Animator animLeft, animRight;
 
     private void Awake()
     {
         generateBubbles = GetComponent<GenerateBubbles>();
+        animLeft = playerLeft.GetComponentInChildren<Animator>();
+        animRight = playerRight.GetComponentInChildren<Animator>();
+    }
+
+    private void Start()
+    {
+        animRight.SetBool("Game3", true);
+        animLeft.SetBool("Game3", true);
     }
 
     void Update ()
@@ -26,7 +38,9 @@ public class destroyOnTap1 : MonoBehaviour {
 
         while (i < Input.touchCount)
         {
-            if (Input.GetTouch(i).phase == TouchPhase.Began)
+            Touch touch = Input.GetTouch(i);
+
+            if (touch.phase == TouchPhase.Began)
             {
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), -Vector2.up);
 
@@ -38,11 +52,13 @@ public class destroyOnTap1 : MonoBehaviour {
                     {
                         if (gameObject.transform.position.x < 0)
                         {
+                            AnimateCharacter(playerLeft, hit.collider.transform, touch, animLeft);
                             InstantiatePop(bluePop);
                             generateBubbles.countBlue--;
                         }
                         else
                         {
+                            AnimateCharacter(playerRight, hit.collider.transform, touch, animRight);
                             InstantiatePop(pinkPop);
                             generateBubbles.countPink--;
                         }
@@ -56,6 +72,17 @@ public class destroyOnTap1 : MonoBehaviour {
         }
     }
 
+    void AnimateCharacter(GameObject Object, Transform tranform, Touch touch, Animator anim)
+    {
+        if(touch.phase == TouchPhase.Began)
+        {
+            (Object.GetComponent<Transform>()).position = new Vector3(0f, transform.position.x, 0f);
+        }
+        else if (touch.phase == TouchPhase.Ended)
+        {
+            (Object.GetComponent<Transform>()).position = new Vector3(0f, 0f, 0f);
+        }
+    }
 
     void InstantiatePop(GameObject bubblePop)
     {
