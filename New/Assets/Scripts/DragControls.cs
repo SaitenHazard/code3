@@ -5,6 +5,7 @@ using UnityEngine;
 public class DragControls : MonoBehaviour
 {
     public FacingDirections facing;
+    public float speed;
 
     private Rigidbody2D rBody;
     private Vector2 touchPosition;
@@ -41,7 +42,7 @@ public class DragControls : MonoBehaviour
 
         touchPosition.x = rBody.transform.position.x;
 
-        rBody.transform.position = Vector2.Lerp(rBody.transform.position, touchPosition, Time.deltaTime * 2);
+        rBody.transform.position = Vector2.Lerp(rBody.transform.position, touchPosition, Time.deltaTime * speed);
     }
 
     public int getTouchDifference()

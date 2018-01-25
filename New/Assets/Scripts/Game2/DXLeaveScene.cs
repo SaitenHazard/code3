@@ -20,7 +20,7 @@ public class DXLeaveScene : MonoBehaviour {
         if(transform.position.x<0f)
         {
             rendered.sprite = bubblePink;
-            facing = FacingDirections.Left;
+            facing = FacingDirections.Right;
         }
         else
         {

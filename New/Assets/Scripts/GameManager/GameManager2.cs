@@ -40,7 +40,6 @@ public class GameManager2 : GameManagerBase
     {
         localFacing = facing;
         ActivateScripts(false);
-        
 
         GameObject[] bubbles;
 
