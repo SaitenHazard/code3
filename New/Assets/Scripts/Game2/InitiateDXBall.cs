@@ -15,6 +15,11 @@ public class InitiateDXBall : MonoBehaviour {
         rbBall = GetComponent<Rigidbody2D>();
         delay = 0.5f;
     }
+
+    public float returnDelay()
+    {
+        return delay;
+    }
 	
 	void Start ()
     {
@@ -53,4 +58,5 @@ public class InitiateDXBall : MonoBehaviour {
             Invoke("FurhterVelocity", delay);
         }
     }
+
 }

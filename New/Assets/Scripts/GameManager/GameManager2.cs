@@ -33,6 +33,8 @@ public class GameManager2 : GameManagerBase
             dragRightScript.enabled = activate;
         }
 
+        Debug.Log(dragRightScript.isActiveAndEnabled);
+
         base.DestroyTutorial();
     }
 

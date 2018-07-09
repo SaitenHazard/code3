@@ -158,7 +158,8 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 6f91b6b65dc821c72e10b9f3970b4a00 Assembly-CSharp.dll:.Turorial1
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 f6f293f0b09e2fa87680a24b59b8c839 Assembly-CSharp.dll:.destroyOnTap1
-8243a762a0f8486cf7ed4bf57e389379 Assembly-CSharp.dll:.DragControls
+7238395ef55ef010ed8fb97c2f113079 Assembly-CSharp.dll:.DragControls
 69ab5296b4340ba59066ab5828d96896 Assembly-CSharp.dll:.ButtonTutorial
 2862f5d998ca3f8ced6ce29a458488df Assembly-CSharp.dll:.BubbleBubbleCollision
 e0e50a3e50dab327cd3a43975a3bd91b Assembly-CSharp.dll:.GenerateGhostColliders
+620603a96cbb5d145863f18a303a2409 Assembly-CSharp.dll:.SpecialDragControl
